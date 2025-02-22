@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniverVillBot", "UniverVillBot\UniverVillBot.csproj", "{BA321347-EC7C-4522-8C50-F30F45E77A76}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DIContainer", "DIContainer\DIContainer.csproj", "{3C9ACBDA-14AB-4E76-B034-A1F3F50E19F7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BA321347-EC7C-4522-8C50-F30F45E77A76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA321347-EC7C-4522-8C50-F30F45E77A76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA321347-EC7C-4522-8C50-F30F45E77A76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA321347-EC7C-4522-8C50-F30F45E77A76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C9ACBDA-14AB-4E76-B034-A1F3F50E19F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C9ACBDA-14AB-4E76-B034-A1F3F50E19F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C9ACBDA-14AB-4E76-B034-A1F3F50E19F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C9ACBDA-14AB-4E76-B034-A1F3F50E19F7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

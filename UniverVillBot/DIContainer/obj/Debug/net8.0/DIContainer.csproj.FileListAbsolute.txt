@@ -1,0 +1,11 @@
+C:\Users\abdul\tren\universiade-village-go\UniverVillBot\DIContainer\bin\Debug\net8.0\DIContainer.deps.json
+C:\Users\abdul\tren\universiade-village-go\UniverVillBot\DIContainer\bin\Debug\net8.0\DIContainer.dll
+C:\Users\abdul\tren\universiade-village-go\UniverVillBot\DIContainer\bin\Debug\net8.0\DIContainer.pdb
+C:\Users\abdul\tren\universiade-village-go\UniverVillBot\DIContainer\obj\Debug\net8.0\DIContainer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\abdul\tren\universiade-village-go\UniverVillBot\DIContainer\obj\Debug\net8.0\DIContainer.AssemblyInfoInputs.cache
+C:\Users\abdul\tren\universiade-village-go\UniverVillBot\DIContainer\obj\Debug\net8.0\DIContainer.AssemblyInfo.cs
+C:\Users\abdul\tren\universiade-village-go\UniverVillBot\DIContainer\obj\Debug\net8.0\DIContainer.csproj.CoreCompileInputs.cache
+C:\Users\abdul\tren\universiade-village-go\UniverVillBot\DIContainer\obj\Debug\net8.0\DIContainer.dll
+C:\Users\abdul\tren\universiade-village-go\UniverVillBot\DIContainer\obj\Debug\net8.0\refint\DIContainer.dll
+C:\Users\abdul\tren\universiade-village-go\UniverVillBot\DIContainer\obj\Debug\net8.0\DIContainer.pdb
+C:\Users\abdul\tren\universiade-village-go\UniverVillBot\DIContainer\obj\Debug\net8.0\ref\DIContainer.dll

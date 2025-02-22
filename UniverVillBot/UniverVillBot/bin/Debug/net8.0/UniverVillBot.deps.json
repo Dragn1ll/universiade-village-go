@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "UniverVillBot/1.0.0": {
+        "dependencies": {
+          "DIContainer": "1.0.0"
+        },
+        "runtime": {
+          "UniverVillBot.dll": {}
+        }
+      },
+      "DIContainer/1.0.0": {
+        "runtime": {
+          "DIContainer.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "UniverVillBot/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "DIContainer/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
