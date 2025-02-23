@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("UniverVillBot")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b82d3084421d95945d08d0ef8823ecf0cbb8bfb1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+09d8d3a798a9d657fc90143d7ccef12617dcb7db")]
 [assembly: System.Reflection.AssemblyProductAttribute("UniverVillBot")]
 [assembly: System.Reflection.AssemblyTitleAttribute("UniverVillBot")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
