@@ -9,3 +9,4 @@ C:\Users\abdul\tren\universiade-village-go\UniverVillBot\DIContainer\obj\Debug\n
 C:\Users\abdul\tren\universiade-village-go\UniverVillBot\DIContainer\obj\Debug\net8.0\refint\DIContainer.dll
 C:\Users\abdul\tren\universiade-village-go\UniverVillBot\DIContainer\obj\Debug\net8.0\DIContainer.pdb
 C:\Users\abdul\tren\universiade-village-go\UniverVillBot\DIContainer\obj\Debug\net8.0\ref\DIContainer.dll
+C:\Users\abdul\tren\universiade-village-go\UniverVillBot\DIContainer\obj\Debug\net8.0\DIContainer.sourcelink.json
