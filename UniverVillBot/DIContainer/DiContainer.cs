@@ -4,7 +4,7 @@ public class DiContainer
 {
     private readonly Dictionary<Type, Implementation> _registrations = new();
     private readonly Dictionary<Type, object?> _singletons = new();
-    private readonly object _singletonLock = new object();
+    private readonly object _singletonLock = new();
 
     public void RegisterTransient<TInterface, TImplementation>() where TImplementation : TInterface
     {
@@ -19,13 +19,18 @@ public class DiContainer
             _singletons[typeof(TImplementation)] = null;
         }
     }
-    
-    public TInterface Resolve<TInterface>()
+
+    public void RegisterScoped<TInterface, TImplementation>() where TImplementation : TInterface
     {
-        return (TInterface)Resolve(typeof(TInterface));
+        _registrations[typeof(TInterface)] = new Implementation(typeof(TImplementation), Lifetime.Scoped);
+    }
+    
+    public TInterface Resolve<TInterface>(Scope? scope = null)
+    {
+        return (TInterface)Resolve(typeof(TInterface), scope);
     }
 
-    private object Resolve(Type type)
+    private object Resolve(Type type, Scope? scope = null)
     {
         if (!_registrations.TryGetValue(type, out var implementation))
         {
@@ -36,12 +41,12 @@ public class DiContainer
         {
             Lifetime.Transient => ResolveTransient(implementation.Type),
             Lifetime.Singleton => ResolveSingleton(implementation.Type),
-            Lifetime.Scoped => throw new Exception("пока не реализовано"),
+            Lifetime.Scoped => ResolveScoped(implementation.Type, scope),
             _ => throw new InvalidOperationException($"No lifetime for type {type}")
         };
     }
 
-    private object ResolveTransient(Type type)
+    internal object ResolveTransient(Type type)
     {
         var constructor = type.GetConstructors().First();
         var parameters = constructor.GetParameters();
@@ -72,8 +77,18 @@ public class DiContainer
         }
     }
 
-    private object ResolveScoped(Type type)
+    private object ResolveScoped(Type type, Scope? scope)
     {
-        return new object();
+        if (scope == null)
+        {
+            throw new ArgumentException("No scope");
+        }
+        
+        return scope.Resolve(type);
+    }
+    
+    public Scope CreateScope()
+    {
+        return new Scope(this);
     }
 }

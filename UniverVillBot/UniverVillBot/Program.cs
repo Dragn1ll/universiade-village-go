@@ -2,7 +2,14 @@
 using UniverVillBot;
 
 var container = new DiContainer();
-container.RegisterSingleton<IMyClass, MyClass>();
+container.RegisterScoped<IMyClass, MyClass>();
 
-var myClass = container.Resolve<IMyClass>();
-myClass.SayHi();
+using var scope1 = container.CreateScope();
+var myClass1 = container.Resolve<IMyClass>(scope1);
+myClass1.SayHi();
+
+using var scope2 = container.CreateScope();
+var myClass2 = container.Resolve<IMyClass>(scope2);
+var myClass3 = container.Resolve<IMyClass>(scope2);
+Console.WriteLine(myClass1 == myClass2);
+Console.WriteLine(myClass3 == myClass2);
