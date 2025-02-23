@@ -76,4 +76,45 @@ public class MicroOrm(string connectionString) : IMicroOrm
         
         return results;
     }
+    
+    // CRUD
+
+    public async Task<int> InsertAsync<T>(T item, string tableName)
+    {
+        var properties = typeof(T).GetProperties();
+        var columns = string.Join(",", properties.Select(p => p.Name));
+        var values = string.Join(",", properties.Select(p => $"@{p.Name}"));
+        
+        var query = $"INSERT INTO {tableName} ({columns}) VALUES ({values})";
+        return await ExecuteAsync(query, item);
+    }
+
+    public async Task<IEnumerable<T>> SelectAsync<T>(string tableName, string? whereCondition = null,
+        object? parameters = null) where T : new()
+    {
+        var query = $"SELECT * FROM {tableName}";
+
+        if (whereCondition != null)
+        {
+            query += $" WHERE {whereCondition}";
+        }
+        
+        return await QueryAsync<T>(query, parameters);
+    }
+
+    public async Task<int> UpdateAsync<T>(string tableName, string whereCondition,
+        object parameters)
+    {
+        var properties = typeof(T).GetProperties();
+        var setColumns = string.Join(",", properties.Select(p => $"{p.Name} = @{p.Name}"));
+        
+        var query = $"UPDATE {tableName} SET {setColumns} WHERE {whereCondition}";
+        return await ExecuteAsync(query, parameters);
+    }
+
+    public async Task<int> DeleteAsync<T>(string tableName, string whereCondition, object? parameters = null)
+    {
+        var query = $"DELETE FROM {tableName} WHERE {whereCondition}";
+        return await ExecuteAsync(query, parameters);
+    }
 }
