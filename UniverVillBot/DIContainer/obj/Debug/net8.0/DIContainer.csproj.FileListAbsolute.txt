@@ -10,3 +10,7 @@ C:\Users\abdul\tren\universiade-village-go\UniverVillBot\DIContainer\obj\Debug\n
 C:\Users\abdul\tren\universiade-village-go\UniverVillBot\DIContainer\obj\Debug\net8.0\DIContainer.pdb
 C:\Users\abdul\tren\universiade-village-go\UniverVillBot\DIContainer\obj\Debug\net8.0\ref\DIContainer.dll
 C:\Users\abdul\tren\universiade-village-go\UniverVillBot\DIContainer\obj\Debug\net8.0\DIContainer.sourcelink.json
+C:\Users\abdul\tren\universiade-village-go\UniverVillBot\DIContainer\bin\Debug\net8.0\MicroORM.dll
+C:\Users\abdul\tren\universiade-village-go\UniverVillBot\DIContainer\bin\Debug\net8.0\MicroORM.pdb
+C:\Users\abdul\tren\universiade-village-go\UniverVillBot\DIContainer\obj\Debug\net8.0\DIContainer.csproj.AssemblyReference.cache
+C:\Users\abdul\tren\universiade-village-go\UniverVillBot\DIContainer\obj\Debug\net8.0\DIContainer.csproj.CopyComplete

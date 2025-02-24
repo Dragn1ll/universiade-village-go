@@ -1,10 +1,12 @@
-﻿namespace DIContainer;
+﻿using MicroORM;
+
+namespace DIContainer;
 
 public class DiContainer
 {
     private readonly Dictionary<Type, Implementation> _registrations = new();
     private readonly Dictionary<Type, object?> _singletons = new();
-    private readonly object _singletonLock = new();
+    private readonly object _lock = new();
 
     public void RegisterTransient<TInterface, TImplementation>() where TImplementation : TInterface
     {
@@ -14,7 +16,7 @@ public class DiContainer
     public void RegisterSingleton<TInterface, TImplementation>() where TImplementation : TInterface
     {
         _registrations[typeof(TInterface)] = new Implementation(typeof(TImplementation), Lifetime.Singleton);
-        lock (_singletonLock)
+        lock (_lock)
         {
             _singletons[typeof(TImplementation)] = null;
         }
@@ -23,6 +25,22 @@ public class DiContainer
     public void RegisterScoped<TInterface, TImplementation>() where TImplementation : TInterface
     {
         _registrations[typeof(TInterface)] = new Implementation(typeof(TImplementation), Lifetime.Scoped);
+    }
+    
+    public void RegisterDb<TImplementation>(string connectionString) where TImplementation : IMicroOrm
+    {
+        if (string.IsNullOrEmpty(connectionString))
+        {
+            throw new InvalidDataException("Invalid connection string");
+        }
+
+        var constructor = typeof(TImplementation).GetConstructors().First();
+        
+        lock (_lock)
+        {
+            _registrations[typeof(IMicroOrm)] = new Implementation(typeof(TImplementation), Lifetime.Singleton);
+            _singletons[typeof(TImplementation)] = constructor.Invoke([connectionString]);
+        }
     }
     
     public TInterface Resolve<TInterface>(Scope? scope = null)
@@ -58,7 +76,7 @@ public class DiContainer
 
     private object ResolveSingleton(Type type)
     {
-        lock (_singletonLock)
+        lock (_lock)
         {
             if (!_singletons.TryGetValue(type, out var implementation))
             {
