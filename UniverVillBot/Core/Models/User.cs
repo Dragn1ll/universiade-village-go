@@ -7,10 +7,10 @@ public class User
     public Guid Id { get; }
     public Role Role { get; }
     public string Name { get; }
-    public int Room { get; }
+    public uint Room { get; }
     public string Telegram { get; }
 
-    private User(Guid id, Role role, string name, int room, string telegram)
+    private User(Guid id, Role role, string name, uint room, string telegram)
     {
         Id = id;
         Role = role;
@@ -19,7 +19,7 @@ public class User
         Telegram = telegram;
     }
 
-    public static User Create(string name, int room, string telegram, Guid? id = null, Role role = Role.User)
+    public static User Create(string name, uint room, string telegram, Guid? id = null, Role role = Role.User)
     {
         if (string.IsNullOrWhiteSpace(telegram))
             throw new ArgumentNullException(nameof(telegram), "Telegram text cannot be null or empty");

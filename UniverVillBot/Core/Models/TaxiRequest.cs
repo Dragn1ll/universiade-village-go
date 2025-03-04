@@ -7,10 +7,10 @@ public class TaxiRequest
     public DateTime DateTime { get; }
     public string Origin { get; }
     public string Destination { get; }
-    public int PassengerAmount { get; }
+    public uint PassengerAmount { get; }
 
     private TaxiRequest(Guid id, Guid ownerId, DateTime dateTime, string origin, string destination,
-        int passengerAmount)
+        uint passengerAmount)
     {
         Id = id;
         OwnerId = ownerId;
@@ -21,7 +21,7 @@ public class TaxiRequest
     }
 
     public static TaxiRequest Create(Guid ownerId, DateTime dateTime, string origin, string destination,
-        int passengerAmount, Guid? id = null)
+        uint passengerAmount, Guid? id = null)
     {
         if (ownerId == Guid.Empty)
             throw new ArgumentNullException(nameof(ownerId), $"{nameof(ownerId)} cannot be null.");

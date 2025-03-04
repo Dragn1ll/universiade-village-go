@@ -5,11 +5,11 @@ public class Shop
     public Guid Id { get; }
     public Guid OwnerId { get; }
     public string Name { get; }
-    public int Room { get; }
+    public uint Room { get; }
     public bool IsOpen { get; }
     public string Telegram { get; }
 
-    private Shop(Guid id, Guid ownerId, string name, int room, bool isOpen, string telegram)
+    private Shop(Guid id, Guid ownerId, string name, uint room, bool isOpen, string telegram)
     {
         Id = id;
         OwnerId = ownerId;
@@ -19,7 +19,7 @@ public class Shop
         Telegram = telegram;
     }
 
-    public static Shop Create(Guid ownerId, string name, int room, bool isOpen, string telegram, Guid? id = null)
+    public static Shop Create(Guid ownerId, string name, uint room, bool isOpen, string telegram, Guid? id = null)
     {
         if (ownerId == Guid.Empty) 
             throw new ArgumentNullException(nameof(ownerId), "Owner details not specified");
