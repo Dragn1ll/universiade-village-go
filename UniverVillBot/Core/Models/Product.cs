@@ -8,6 +8,15 @@ public class Product
     public uint Amount { get; }
     public uint Price { get; }
 
+    public Product()
+    {
+        Id = Guid.Empty;
+        ShopId = Guid.Empty;
+        Name = string.Empty;
+        Amount = 0;
+        Price = 0;
+    }
+
     private Product(Guid id, Guid shopId, string name, uint amount, uint price)
     {
         Id = id;

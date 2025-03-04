@@ -10,6 +10,16 @@ public class User
     public uint Room { get; }
     public string Telegram { get; }
 
+    public User()
+    {
+        Id = Guid.Empty;
+        Role = Role.User;
+        Name = string.Empty;
+        Telegram = string.Empty;
+        Room = 0;
+        Telegram = string.Empty;
+    }
+
     private User(Guid id, Role role, string name, uint room, string telegram)
     {
         Id = id;

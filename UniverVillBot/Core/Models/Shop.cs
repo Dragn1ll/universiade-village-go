@@ -9,6 +9,16 @@ public class Shop
     public bool IsOpen { get; }
     public string Telegram { get; }
 
+    public Shop()
+    {
+        Id = Guid.Empty;
+        OwnerId = Guid.Empty;
+        Name = string.Empty;
+        Room = 0;
+        IsOpen = false;
+        Telegram = string.Empty;
+    }
+
     private Shop(Guid id, Guid ownerId, string name, uint room, bool isOpen, string telegram)
     {
         Id = id;

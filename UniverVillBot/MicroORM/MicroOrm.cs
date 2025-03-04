@@ -5,12 +5,13 @@ namespace MicroORM;
 
 public class MicroOrm(string connectionString) : IMicroOrm
 {
-    public async Task<IEnumerable<T>> QueryAsync<T>(string query, object? parameters = null) where T : new()
+    public async Task<IEnumerable<T>> QueryAsync<T>(string query, object? parameters = null, 
+        CancellationToken cancellationToken = default) where T : new()
     {
         try
         {
             await using var connection = new NpgsqlConnection(connectionString);
-            await connection.OpenAsync();
+            await connection.OpenAsync(cancellationToken);
             await using var command = connection.CreateCommand();
             command.CommandText = query;
             if (parameters != null)
@@ -22,7 +23,7 @@ public class MicroOrm(string connectionString) : IMicroOrm
                 }
             }
 
-            await using var dataReader = await command.ExecuteReaderAsync();
+            await using var dataReader = await command.ExecuteReaderAsync(cancellationToken);
             return Map<T>(dataReader);
         }
         catch (Exception exception)
@@ -31,12 +32,13 @@ public class MicroOrm(string connectionString) : IMicroOrm
         }
     }
 
-    public async Task<int> ExecuteAsync(string query, object? parameters = null)
+    public async Task<int> ExecuteAsync(string query, object? parameters = null, 
+        CancellationToken cancellationToken = default)
     {
         try
         {
             await using var connection = new NpgsqlConnection(connectionString);
-            await connection.OpenAsync();
+            await connection.OpenAsync(cancellationToken);
             await using var command = connection.CreateCommand();
             command.CommandText = query;
             if (parameters != null)
@@ -48,7 +50,7 @@ public class MicroOrm(string connectionString) : IMicroOrm
                 }
             }
         
-            return await command.ExecuteNonQueryAsync();
+            return await command.ExecuteNonQueryAsync(cancellationToken);
         }
         catch (Exception exception)
         {
@@ -79,18 +81,18 @@ public class MicroOrm(string connectionString) : IMicroOrm
     
     // CRUD
 
-    public async Task<int> InsertAsync<T>(T item, string tableName)
+    public async Task<int> InsertAsync<T>(T item, string tableName, CancellationToken cancellationToken = default)
     {
         var properties = typeof(T).GetProperties();
         var columns = string.Join(",", properties.Select(p => p.Name));
         var values = string.Join(",", properties.Select(p => $"@{p.Name}"));
         
         var query = $"INSERT INTO {tableName} ({columns}) VALUES ({values})";
-        return await ExecuteAsync(query, item);
+        return await ExecuteAsync(query, item, cancellationToken);
     }
 
     public async Task<IEnumerable<T>> SelectAsync<T>(string tableName, string? whereCondition = null,
-        object? parameters = null) where T : new()
+        object? parameters = null, CancellationToken cancellationToken = default) where T : new()
     {
         var query = $"SELECT * FROM {tableName}";
 
@@ -99,22 +101,23 @@ public class MicroOrm(string connectionString) : IMicroOrm
             query += $" WHERE {whereCondition}";
         }
         
-        return await QueryAsync<T>(query, parameters);
+        return await QueryAsync<T>(query, parameters, cancellationToken);
     }
 
-    public async Task<int> UpdateAsync<T>(string tableName, string whereCondition,
-        object parameters)
+    public async Task<int> UpdateAsync(string tableName, string whereCondition,
+        object parameters, CancellationToken cancellationToken = default)
     {
-        var properties = typeof(T).GetProperties();
+        var properties = parameters.GetType().GetProperties();
         var setColumns = string.Join(",", properties.Select(p => $"{p.Name} = @{p.Name}"));
         
         var query = $"UPDATE {tableName} SET {setColumns} WHERE {whereCondition}";
-        return await ExecuteAsync(query, parameters);
+        return await ExecuteAsync(query, parameters, cancellationToken);
     }
 
-    public async Task<int> DeleteAsync<T>(string tableName, string whereCondition, object? parameters = null)
+    public async Task<int> DeleteAsync<T>(string tableName, string whereCondition, object? parameters = null, 
+        CancellationToken cancellationToken = default)
     {
         var query = $"DELETE FROM {tableName} WHERE {whereCondition}";
-        return await ExecuteAsync(query, parameters);
+        return await ExecuteAsync(query, parameters, cancellationToken);
     }
 }

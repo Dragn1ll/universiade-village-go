@@ -2,7 +2,8 @@ namespace Core.Enums;
 
 public enum Role
 {
-    User = 0,
-    Huckster = 1,
-    Admin = 2
+    NoRole = 0,
+    User = 1,
+    Huckster = 2,
+    Admin = 3
 }
