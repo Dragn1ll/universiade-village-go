@@ -8,6 +8,15 @@ public class ReservationProduct
     public uint Amount { get; }
     public DateTime DateTime { get; }
 
+    public ReservationProduct()
+    {
+        Id = Guid.Empty;
+        UserId = Guid.Empty;
+        ProductId = Guid.Empty;
+        Amount = 0;
+        DateTime = DateTime.MinValue;
+    }
+
     private ReservationProduct(Guid id, Guid userId, Guid productId, uint amount, DateTime dateTime)
     {
         Id = id;

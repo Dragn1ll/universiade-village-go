@@ -9,6 +9,16 @@ public class TaxiRequest
     public string Destination { get; }
     public uint PassengerAmount { get; }
 
+    public TaxiRequest()
+    {
+        Id = Guid.Empty;
+        OwnerId = Guid.Empty;
+        DateTime = DateTime.MinValue;
+        Origin = string.Empty;
+        Destination = string.Empty;
+        PassengerAmount = 0;
+    }
+
     private TaxiRequest(Guid id, Guid ownerId, DateTime dateTime, string origin, string destination,
         uint passengerAmount)
     {

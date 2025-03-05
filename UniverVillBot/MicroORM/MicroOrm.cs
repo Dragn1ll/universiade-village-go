@@ -114,7 +114,7 @@ public class MicroOrm(string connectionString) : IMicroOrm
         return await ExecuteAsync(query, parameters, cancellationToken);
     }
 
-    public async Task<int> DeleteAsync<T>(string tableName, string whereCondition, object? parameters = null, 
+    public async Task<int> DeleteAsync(string tableName, string whereCondition, object? parameters = null, 
         CancellationToken cancellationToken = default)
     {
         var query = $"DELETE FROM {tableName} WHERE {whereCondition}";

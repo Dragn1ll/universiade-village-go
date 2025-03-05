@@ -28,7 +28,7 @@ public class UsersRepository(IMicroOrm microOrm) : IUsersRepository
     {
         try
         {
-            var result = await microOrm.SelectAsync<User>(TableName, "UserId=@UserId",
+            var result = await microOrm.SelectAsync<User>(TableName, "Id=@UserId",
                 new {UserId = userId}, cancellationToken);
 
             return Result<bool>.Success(result.Any());
@@ -59,7 +59,7 @@ public class UsersRepository(IMicroOrm microOrm) : IUsersRepository
     {
         try
         {
-            await microOrm.UpdateAsync(TableName, "UserId=@UserId", 
+            await microOrm.UpdateAsync(TableName, "Id=@UserId", 
                 new {UserId = userId, Room = newRoom}, cancellationToken);
             
             return Result.Success();
@@ -75,7 +75,7 @@ public class UsersRepository(IMicroOrm microOrm) : IUsersRepository
     {
         try
         {
-            await microOrm.UpdateAsync(TableName, "UserId=@UserId", 
+            await microOrm.UpdateAsync(TableName, "Id=@UserId", 
                 new {UserId = userId, Name = newName}, cancellationToken);
             
             return Result.Success();
@@ -91,7 +91,7 @@ public class UsersRepository(IMicroOrm microOrm) : IUsersRepository
     {
         try
         {
-            var result = await microOrm.SelectAsync<User>(TableName, "UserId=@UserId",
+            var result = await microOrm.SelectAsync<User>(TableName, "Id=@UserId",
                 new { UserId = userId }, cancellationToken);
 
             return Result<Role>.Success(result.First().Role);

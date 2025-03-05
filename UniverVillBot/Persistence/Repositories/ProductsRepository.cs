@@ -29,7 +29,7 @@ public class ProductsRepository(IMicroOrm microOrm) : IProductsRepository
         try
         {
             var result = await microOrm.SelectAsync<Product>(TableName, 
-                "ProductId=@ProductId", new { ProductId = productId }, cancellationToken);
+                "Id=@ProductId", new { ProductId = productId }, cancellationToken);
             
             return Result<Product>.Success(result.First());
         }
@@ -61,7 +61,7 @@ public class ProductsRepository(IMicroOrm microOrm) : IProductsRepository
     {
         try
         {
-            await microOrm.UpdateAsync(TableName, "ProductId=@ProductId", 
+            await microOrm.UpdateAsync(TableName, "Id=@ProductId", 
                 new { ProductId = productId, Amount = amount}, cancellationToken);
             
             return Result.Success();
@@ -76,7 +76,7 @@ public class ProductsRepository(IMicroOrm microOrm) : IProductsRepository
     {
         try
         {
-            await microOrm.UpdateAsync(TableName, "ProductId=@ProductId", 
+            await microOrm.UpdateAsync(TableName, "Id=@ProductId", 
                 new { ProductId = productId, Price = newPrice }, cancellationToken);
             
             return Result.Success();
@@ -91,7 +91,7 @@ public class ProductsRepository(IMicroOrm microOrm) : IProductsRepository
     {
         try
         {
-            await microOrm.UpdateAsync(TableName, "ProductId=@ProductId", 
+            await microOrm.UpdateAsync(TableName, "Id=@ProductId", 
                 new { ProductId = productId, Name = newName }, cancellationToken);
             
             return Result.Success();
@@ -106,7 +106,7 @@ public class ProductsRepository(IMicroOrm microOrm) : IProductsRepository
     {
         try
         {
-            await microOrm.DeleteAsync<Product>(TableName, "ProductId=@ProductId", 
+            await microOrm.DeleteAsync(TableName, "Id=@ProductId", 
                 new { ProductId = productId }, cancellationToken);
             
             return Result.Success();

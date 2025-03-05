@@ -7,6 +7,14 @@ public class ReservationTaxi
     public Guid UserId { get; }
     public uint SeatsAmount { get; }
 
+    public ReservationTaxi()
+    {
+        Id = Guid.Empty;
+        RequestId = Guid.Empty;
+        UserId = Guid.Empty;
+        SeatsAmount = 0;
+    }
+
     private ReservationTaxi(Guid id, Guid requestId, Guid userId, uint seatsAmount)
     {
         Id = id;

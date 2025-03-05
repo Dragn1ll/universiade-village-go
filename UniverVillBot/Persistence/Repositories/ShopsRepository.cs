@@ -45,7 +45,7 @@ public class ShopsRepository(IMicroOrm microOrm) : IShopsRepository
     {
         try
         {
-            await microOrm.UpdateAsync(TableName,  "ShopId=@ShopId", 
+            await microOrm.UpdateAsync(TableName,  "Id=@ShopId", 
                 new{ShopId = shopId, Name = newName}, cancellationToken);
             
             return Result.Success();
@@ -60,7 +60,7 @@ public class ShopsRepository(IMicroOrm microOrm) : IShopsRepository
     {
         try
         {
-            await microOrm.UpdateAsync(TableName,  "ShopId=@ShopId", 
+            await microOrm.UpdateAsync(TableName,  "Id=@ShopId", 
                 new{ShopId = shopId, Room = newRoom}, cancellationToken);
             
             return Result.Success();
@@ -76,7 +76,7 @@ public class ShopsRepository(IMicroOrm microOrm) : IShopsRepository
     {
         try
         {
-            await microOrm.UpdateAsync(TableName,  "ShopId=@ShopId", 
+            await microOrm.UpdateAsync(TableName,  "Id=@ShopId", 
                 new{ShopId = shopId, Telegram = newTelegram}, cancellationToken);
             
             return Result.Success();
@@ -91,7 +91,7 @@ public class ShopsRepository(IMicroOrm microOrm) : IShopsRepository
     {
         try
         {
-            var result = await microOrm.SelectAsync<Shop>(TableName, "ShopId=@ShopId", 
+            var result = await microOrm.SelectAsync<Shop>(TableName, "Id=@ShopId", 
                 new{ShopId = shopId}, cancellationToken);
             
             return Result<bool>.Success(result.Any());
@@ -123,7 +123,7 @@ public class ShopsRepository(IMicroOrm microOrm) : IShopsRepository
     {
         try
         {
-            var result = await microOrm.SelectAsync<Shop>(TableName, "ShopId=@ShopId", 
+            var result = await microOrm.SelectAsync<Shop>(TableName, "Id=@ShopId", 
                 new{ShopId = shopId}, cancellationToken);
             
             return Result<Shop>.Success(result.First());
